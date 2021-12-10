@@ -15,29 +15,28 @@ public class Menu extends JFrame {
     Icon imageN = new ImageIcon("noticias.png");
     Icon imageA = new ImageIcon("actualizaciones.png");
 
-    //background.setSize(alturaPantalla/4, anchoPantalla/4);
     public Menu(){
         super("Ultimate Builder");
         //Toolkit miPantalla = Toolkit.getDefaultToolkit();
         Image miIcono = miPantalla.getImage("icono.jpg");
         setIconImage(miIcono);
-
+        Lamina lamina = new Lamina();
         setBounds(anchoPantalla/4,alturaPantalla/4, anchoPantalla/(2), alturaPantalla/(2));
         JButton players = new JButton("Jugadores");
-        players.setBounds(0, 0, 250, 30);
+        players.setBounds(0, 0, this.getWidth()/3, this.getHeight()/10);
         JButton plantillas = new JButton("Plantillas");
-        plantillas.setBounds(250, 0, 250,30);
+        plantillas.setBounds(250, 0, this.getWidth()/3, this.getHeight()/10);
         JButton miClub = new JButton("Mi Club");
-        miClub.setBounds(500,0, 255, 30);
+        miClub.setBounds(500,0, this.getWidth()/3, this.getHeight()/10);
         JButton noticias = new JButton();
-        noticias.setBounds(80, 110, 200, 200);
+        noticias.setBounds(this.getWidth()-688, 110, 200, 200);
+        System.out.println(this.getWidth());
         noticias.setIcon(imageN);
         noticias.setToolTipText("Noticias");
         JButton actualizaciones = new JButton();
-        actualizaciones.setBounds(480, 110, 200, 200);
+        actualizaciones.setBounds(this.getWidth()-280, 110, 200, 200);
         actualizaciones.setIcon(imageA);
         actualizaciones.setToolTipText("Próximas actualizaciones");
-        Lamina lamina = new Lamina();
         lamina.add(players);
         lamina.add(plantillas);
         lamina.add(miClub);
@@ -49,7 +48,6 @@ public class Menu extends JFrame {
         lamina.setLayout(null);
         setResizable(false);
 
-
     }
     private class Lamina extends JPanel{
         @Override
@@ -58,5 +56,4 @@ public class Menu extends JFrame {
             g.drawImage(background, 0, 0, null);
         }
     }
-
 }

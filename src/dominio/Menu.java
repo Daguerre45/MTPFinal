@@ -66,6 +66,14 @@ public class Menu extends JFrame {
         }
     }
 
+    public void abrirEnlace(String url){
+        try {
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+        }
+        catch (java.io.IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     private class Funcionalidad implements ActionListener {
 
         @Override
@@ -84,8 +92,8 @@ public class Menu extends JFrame {
                 Noticias noticia = new Noticias();
                 //dispose();
             }else if (e.getSource() == actualizaciones){
-                //TODO ventana de actualizaciones
-                dispose();
+                abrirEnlace("https://www.ea.com/es-es/games/fifa/fifa-22/news");//TODO ventana de actualizaciones
+                
             }
         }
     }

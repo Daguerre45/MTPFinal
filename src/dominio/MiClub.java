@@ -17,7 +17,7 @@ public class MiClub extends JFrame {
     Icon estadio = new ImageIcon("estadio.png");
 
     public MiClub(){
-        super("Ultimate Builder - Jugadores");
+        super("Ultimate Builder - Mi Club");
         Image miIcono = miPantalla.getImage("icono.jpg");
         setIconImage(miIcono);
         this.setBounds(anchoPantalla/4,alturaPantalla/4, anchoPantalla/(2), alturaPantalla/(2));

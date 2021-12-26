@@ -162,8 +162,8 @@ public class Jugadores extends JFrame {
         }catch (SQLException ex){
             System.out.println("Error " + ex);
         }
-        //JTextArea texto = new JTextArea(datos);
-        //lamina.add(texto);
+        JTextArea texto = new JTextArea(datos);
+        lamina.add(texto);
         this.setBounds(anchoPantalla/4,alturaPantalla/4, anchoPantalla/(2), alturaPantalla/(2));
         menuBar.add(posicion);
         menuBar.add(nacionalidad);

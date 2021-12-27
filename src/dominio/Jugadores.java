@@ -1,147 +1,101 @@
 package dominio;
 
 import javax.swing.*;
+
+import dominio.posiciones.*;
+
 import java.sql.DriverManager;
 import java.sql.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 public class Jugadores extends JFrame {
     JMenuBar menuBar;
-    JMenu posicion;
-    JMenu nacionalidad;
-    JMenu club;
+    JMenu defensas;
+    JMenu centrocampistas;
+    JMenu delanteros;
+    JButton buscar;
+    JMenuItem GK;
+    JMenuItem LB;
+    JMenuItem RB;
+    JMenuItem MCD;
+    JMenuItem CAM;
+    JMenuItem ST;
+    JMenuItem CB;
+    JMenuItem LM;
+    JMenuItem MC;
+    JMenuItem RM;
+    JMenuItem MI;
+    JMenuItem MD;
+    JMenuItem CF;
+    JMenuItem RW;
+    JMenuItem LW;
     Toolkit miPantalla = Toolkit.getDefaultToolkit();
     Image background = Toolkit.getDefaultToolkit().createImage("fondoMenu.jpg");
     Dimension tamanoPantalla = miPantalla.getScreenSize();
     int alturaPantalla = tamanoPantalla.height;
     int anchoPantalla = tamanoPantalla.width;
+    String datos = "";
+   
 
     public Jugadores(){
         super("Ultimate Builder - Jugadores");
         Image miIcono = miPantalla.getImage("icono.jpg");
         ScrollPane lamina = new ScrollPane();
+        buscar = new JButton("BUSCAR");
+        //buscar.addActionListener(new Funcionalidad());
         menuBar = new JMenuBar();
-        posicion = new JMenu("Posición");
-        nacionalidad = new JMenu("Nacionalidad");
-        club = new JMenu("Club");
-        ButtonGroup grupo = new ButtonGroup();
-        JRadioButtonMenuItem GK = new JRadioButtonMenuItem("GK");
-        JRadioButtonMenuItem LB = new JRadioButtonMenuItem("LB");
-        JRadioButtonMenuItem RB = new JRadioButtonMenuItem("RB");
-        JRadioButtonMenuItem MCD = new JRadioButtonMenuItem("CDM");
-        JRadioButtonMenuItem CAM = new JRadioButtonMenuItem("CAM");
-        JRadioButtonMenuItem ST = new JRadioButtonMenuItem("ST");
-        JRadioButtonMenuItem CB = new JRadioButtonMenuItem("CB");
-        JRadioButtonMenuItem LM = new JRadioButtonMenuItem("LM");
-        JRadioButtonMenuItem MC = new JRadioButtonMenuItem("CM");
-        JRadioButtonMenuItem RM = new JRadioButtonMenuItem("RM");
-        JRadioButtonMenuItem MI = new JRadioButtonMenuItem("MI");
-        JRadioButtonMenuItem MD = new JRadioButtonMenuItem("MD");
-        JRadioButtonMenuItem CF = new JRadioButtonMenuItem("CF");
-        JRadioButtonMenuItem RW = new JRadioButtonMenuItem("RW");
-        JRadioButtonMenuItem LW = new JRadioButtonMenuItem("LW");
-        JRadioButtonMenuItem ALE = new JRadioButtonMenuItem("Alemania");
-        JRadioButtonMenuItem ESP = new JRadioButtonMenuItem("ESPAÑA");
-        JRadioButtonMenuItem EEUU = new JRadioButtonMenuItem("EEUU");
-        JRadioButtonMenuItem BOS = new JRadioButtonMenuItem("Bosnia");
-        JRadioButtonMenuItem HOL = new JRadioButtonMenuItem("Paises Bajos");
-        JRadioButtonMenuItem ARG = new JRadioButtonMenuItem("Argentina");
-        JRadioButtonMenuItem BEL = new JRadioButtonMenuItem("Belgica");
-        JRadioButtonMenuItem BR = new JRadioButtonMenuItem("Brasil");
-        JRadioButtonMenuItem URY = new JRadioButtonMenuItem("Uruguay");
-        JRadioButtonMenuItem CRO = new JRadioButtonMenuItem("Croacia");
-        JRadioButtonMenuItem RD = new JRadioButtonMenuItem("Republica Dominicana");
-        JRadioButtonMenuItem CAN = new JRadioButtonMenuItem("Canada");
-        JRadioButtonMenuItem AUST = new JRadioButtonMenuItem("Austria");
-        JRadioButtonMenuItem SLO = new JRadioButtonMenuItem("Slovakia");
-        JRadioButtonMenuItem ING = new JRadioButtonMenuItem("Inglaterra");
-        JRadioButtonMenuItem NIG = new JRadioButtonMenuItem("Nigeria");
-        JRadioButtonMenuItem POR = new JRadioButtonMenuItem("Portugal");  
-        JRadioButtonMenuItem MONT = new JRadioButtonMenuItem("Montenegro");
-        JRadioButtonMenuItem SUIZ = new JRadioButtonMenuItem("Suiza");
-        JRadioButtonMenuItem NOR = new JRadioButtonMenuItem("Noruega");
-        JRadioButtonMenuItem ITA = new JRadioButtonMenuItem("Italia");
-        JRadioButtonMenuItem CA = new JRadioButtonMenuItem("Camerun");
-        JRadioButtonMenuItem URC = new JRadioButtonMenuItem("Ucrania");
-        JRadioButtonMenuItem SUE = new JRadioButtonMenuItem("Suecia");
-        JRadioButtonMenuItem ALG = new JRadioButtonMenuItem("Algeria");
-        JRadioButtonMenuItem SCT = new JRadioButtonMenuItem("Escocia");
-        JRadioButtonMenuItem EGP = new JRadioButtonMenuItem("Egipto");
-        JRadioButtonMenuItem GRE = new JRadioButtonMenuItem("Grecia");
-        JRadioButtonMenuItem BAR = new JRadioButtonMenuItem("Barcelona A");
-        JRadioButtonMenuItem RMD = new JRadioButtonMenuItem("Real Madrid");
-        JRadioButtonMenuItem BAY = new JRadioButtonMenuItem("Bayern De Munich A");
-        JRadioButtonMenuItem ATL = new JRadioButtonMenuItem("Atletico De Madrid");
-        JRadioButtonMenuItem SEV = new JRadioButtonMenuItem("Sevilla A");
-        JRadioButtonMenuItem BOR = new JRadioButtonMenuItem("Borusia Dortmund");
-        JRadioButtonMenuItem PSG = new JRadioButtonMenuItem("Paris Saint Germain");
-        JRadioButtonMenuItem INT = new JRadioButtonMenuItem("Inter de Milan");
-        JRadioButtonMenuItem CHL = new JRadioButtonMenuItem("Chelsea");
-        JRadioButtonMenuItem UTD = new JRadioButtonMenuItem("Manchester United");
-        JRadioButtonMenuItem CIY = new JRadioButtonMenuItem("Mancester City");
-        JRadioButtonMenuItem LIV = new JRadioButtonMenuItem("Liverpool");
-        JRadioButtonMenuItem ARS = new JRadioButtonMenuItem("Arsenal");
-        JRadioButtonMenuItem LEZ = new JRadioButtonMenuItem("Leipzig");
-        posicion.add(GK);
-        posicion.add(LB);
-        posicion.add(RB);
-        posicion.add(MCD);
-        posicion.add(CAM);
-        posicion.add(ST);
-        posicion.add(CB);
-        posicion.add(LM);
-        posicion.add(MC);
-        posicion.add(RM);
-        posicion.add(MI);
-        posicion.add(MD);
-        posicion.add(CF);
-        posicion.add(RW);
-        posicion.add(LW);
-        nacionalidad.add(ALE);
-        nacionalidad.add(ESP);
-        nacionalidad.add(EEUU);
-        nacionalidad.add(BOS);
-        nacionalidad.add(HOL);
-        nacionalidad.add(ARG);
-        nacionalidad.add(BEL);
-        nacionalidad.add(BR);
-        nacionalidad.add(URY);
-        nacionalidad.add(CRO);
-        nacionalidad.add(RD);
-        nacionalidad.add(CAN);
-        nacionalidad.add(AUST);
-        nacionalidad.add(SLO);
-        nacionalidad.add(ING);
-        nacionalidad.add(NIG);
-        nacionalidad.add(POR);
-        nacionalidad.add(MONT);
-        nacionalidad.add(SUIZ);
-        nacionalidad.add(NOR);
-        nacionalidad.add(ITA);
-        nacionalidad.add(CA);
-        nacionalidad.add(URC);
-        nacionalidad.add(SUE);
-        nacionalidad.add(ALG);
-        nacionalidad.add(SCT);
-        nacionalidad.add(EGP);
-        nacionalidad.add(GRE);
-        club.add(BAR);
-        club.add(RMD);
-        club.add(BAY);
-        club.add(ATL);
-        club.add(SEV);
-        club.add(BOR);
-        club.add(PSG);
-        club.add(INT);
-        club.add(CHL);
-        club.add(UTD);
-        club.add(CIY);
-        club.add(LIV);
-        club.add(ARS);
-        club.add(LEZ);
-        
+        defensas = new JMenu("Defensas");
+        centrocampistas = new JMenu("Centrocampistas");
+        delanteros = new JMenu("Delanteros");
+        GK = new JMenuItem("GK");
+        GK.addActionListener(new Funcionalidad());
+        LB = new JMenuItem("LB");
+        LB.addActionListener(new Funcionalidad());
+        RB = new JMenuItem("RB");
+        RB.addActionListener(new Funcionalidad());
+        MCD = new JMenuItem("CDM");
+        MCD.addActionListener(new Funcionalidad());
+        CAM = new JMenuItem("CAM");
+        CAM.addActionListener(new Funcionalidad());
+        ST = new JMenuItem("ST");
+        ST.addActionListener(new Funcionalidad());
+        CB = new JMenuItem("CB");
+        CB.addActionListener(new Funcionalidad());
+        LM = new JMenuItem("LM");
+        LM.addActionListener(new Funcionalidad());
+        MC = new JMenuItem("CM");
+        MC.addActionListener(new Funcionalidad());
+        RM = new JMenuItem("RM");
+        RM.addActionListener(new Funcionalidad());
+        MI = new JMenuItem("MI");
+        MI.addActionListener(new Funcionalidad());
+        MD = new JMenuItem("MD");
+        MD.addActionListener(new Funcionalidad());
+        CF = new JMenuItem("CF");
+        CF.addActionListener(new Funcionalidad());
+        RW = new JMenuItem("RW");
+        RW.addActionListener(new Funcionalidad());
+        LW = new JMenuItem("LW");
+        LW.addActionListener(new Funcionalidad());
+        defensas.add(GK);
+        defensas.add(LB);
+        defensas.add(RB);
+        centrocampistas.add(MCD);
+        centrocampistas.add(CAM);
+        delanteros.add(ST);
+        defensas.add(CB);
+        centrocampistas.add(LM);
+        centrocampistas.add(MC);
+        centrocampistas.add(RM);
+        centrocampistas.add(MI);
+        centrocampistas.add(MD);
+        delanteros.add(CF);
+        delanteros.add(RW);
+        delanteros.add(LW);
         setIconImage(miIcono);
-        String datos = "";
 
         try{
             Class.forName("org.sqlite.JDBC");
@@ -156,7 +110,6 @@ public class Jugadores extends JFrame {
                 posicion = result.getString("posicion");
                 datos += "Nombre: " + nombre + " Posicion: " + posicion + "\n";
             }
-
         }catch(ClassNotFoundException e){
             System.out.println("Error " + e);
         }catch (SQLException ex){
@@ -165,13 +118,49 @@ public class Jugadores extends JFrame {
         JTextArea texto = new JTextArea(datos);
         lamina.add(texto);
         this.setBounds(anchoPantalla/4,alturaPantalla/4, anchoPantalla/(2), alturaPantalla/(2));
-        menuBar.add(posicion);
-        menuBar.add(nacionalidad);
-        menuBar.add(club);
+        menuBar.add(defensas);
+        menuBar.add(centrocampistas);
+        menuBar.add(delanteros);
+        menuBar.add(buscar);
         menuBar.setVisible(true);
         setJMenuBar(menuBar);
         add(lamina);
         setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
 
+    private class Funcionalidad implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == GK){
+                JugadoresGK gk = new JugadoresGK();
+            }else if (e.getSource() == CAM){
+                JugadoresCAM cam = new JugadoresCAM();
+            }else if (e.getSource() == CB){
+                JugadoresCB cb = new JugadoresCB();
+            }else if (e.getSource() == CF){
+                JugadoresCF cf = new JugadoresCF();
+            }else if (e.getSource() == LB){
+                JugadoresLB lb = new JugadoresLB();
+            }else if (e.getSource() == LM){
+                JugadoresLM lm = new JugadoresLM();
+            }else if (e.getSource() == LW){
+                JugadoresLW lw = new JugadoresLW();
+            }else if (e.getSource() == MCD){
+                JugadoresMCD mcd = new JugadoresMCD(); 
+            }else if (e.getSource() == MD){
+                JugadoresMD md = new JugadoresMD();
+            }else if (e.getSource() == MI){
+                JugadoresMI mi = new JugadoresMI();
+            }else if (e.getSource() == RB){
+                JugadoresRB rb = new JugadoresRB();
+            }else if (e.getSource() == RM){
+                JugadoresRM rr = new JugadoresRM();
+            }else if (e.getSource() == RW){
+                JugadoresRW rw = new JugadoresRW();
+            }else if (e.getSource() == ST){
+                JugadoresST st = new JugadoresST();
+            }
+        }
     }
 }

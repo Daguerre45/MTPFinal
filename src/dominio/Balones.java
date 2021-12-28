@@ -39,7 +39,7 @@ public class Balones extends JFrame {
         }
         JTextArea texto = new JTextArea(datos);
         panel.add(texto);
-        this.setBounds(anchoPantalla/4,alturaPantalla/4, anchoPantalla/(2), alturaPantalla/(2));
+        this.setBounds(384,216, 768, 432);
         add(panel);
         setVisible(true);
     }

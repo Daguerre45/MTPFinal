@@ -19,7 +19,7 @@ public class Items extends JFrame {
     Icon estadio = new ImageIcon("estadio.png");
 
     public Items(){
-        super("Ultimate Builder - Mi Club");
+        super("Ultimate Builder - Ítems");
         Image miIcono = miPantalla.getImage("icono.jpg");
         setIconImage(miIcono);
         this.setBounds(384,216, 768, 432);
